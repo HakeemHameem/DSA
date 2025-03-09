@@ -1,19 +1,14 @@
 #include<iostream>
-#include<vector>
+#include<algorithm>
 using namespace std;
-
-#include <iostream>
-#include <algorithm>
-
-using namespace std;
-
-int main() {
+int main(){
     string str = "take u forward";
-    str.erase(remove_if(str.begin(), str.end(), [](char c) {
-        return string("aeiouAEIOU").find(c) != string::npos;
+
+    str.erase(remove_if(str.begin() , str.end() , [](char c){
+        return string("aeiouAEIOU").find(c)!=string::npos;
     }), str.end());
 
-    cout << str;  
+    cout<<str<<endl;
     return 0;
-}
 
+}
