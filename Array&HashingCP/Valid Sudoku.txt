@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        for(int row=0;row<9;row++){
+            unordered_set<char>isRow;
+             for(int col=0;col<9;col++){
+                if(board[row][col]!='.' && isRow.find(board[row][col])!=isRow.end()){
+                    return false;
+                }
+
+                isRow.insert(board[row][col]);
+             }
+        }
+        for(int col=0;col<9;col++){
+            unordered_set<char>isCol;
+             for(int row=0;row<9;row++){
+                if(board[row][col]!='.' && isCol.find(board[row][col])!=isCol.end()){
+                    return false;
+                }
+
+                isCol.insert(board[row][col]);
+             }
+        }
+
+        vector<unordered_set<char>>unbox(9);
+
+        for(int row=0;row<9;row++){
+            for(int col=0;col<9;col++){
+                int loc = (row/3)*3 + col/3;
+                if(board[row][col]!='.' && unbox[loc].find(board[row][col])!=unbox[loc].end()){
+                    return false;
+                }
+                unbox[loc].insert(board[row][col]);
+            }
+        }
+
+        return true;
+
+
+
+    }
+};

@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+
+        priority_queue<pair<int,int>>maxHeap;
+
+        for(auto it : mp){
+            maxHeap.push({it.second,it.first});
+        }
+
+        vector<int>result;
+        while(k>0){
+            result.push_back(maxHeap.top().second);
+            maxHeap.pop();
+            k--;
+        }
+        return result;
+    }
+};
